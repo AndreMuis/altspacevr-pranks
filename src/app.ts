@@ -19,7 +19,7 @@ export default class App {
 
     private userJoined = async (mreUser: MRESDK.User) => {
 
-
+        /*
         let actor = MRESDK.Actor.CreateFromLibrary(this.context, {
             resourceId: "artifact: 989569425642356944",
             actor: {
@@ -43,8 +43,11 @@ export default class App {
             events: []
         })
         
-        actor.enableAnimation("rise")
+        console.log(actor.transform.app)
+        console.log(actor.transform.local)
 
+        actor.enableAnimation("rise")
+        */
 
 
         let user = new User(mreUser.id, mreUser.name)

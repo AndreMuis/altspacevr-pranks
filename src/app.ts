@@ -26,9 +26,14 @@ export default class App {
                 transform: {
                     local: {
                         position: { x: 0, y: -1.1, z: 0 },
-                        scale: { x: 1, y: 0, z: 1 } 
+                        scale: { x: 3, y: 0, z: 3 } 
                     }
+                },
+                attachment: {
+                    userId: mreUser.id,
+                    attachPoint: 'hips'
                 }
+    
             }
         }).value
 

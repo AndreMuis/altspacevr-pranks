@@ -73,7 +73,7 @@ export default class App {
         time: 3,
         value: { transform: { local: { position: new Vector3(0, -1.1, 0) } } }
     }, {
-        time: 4,
+        time: 8,
         value: { transform: { local: { position: new Vector3(0, 10, 0) } } }
     }]
 }

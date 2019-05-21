@@ -28,13 +28,8 @@ export default class App {
                         position: { x: 0, y: -1.1, z: 0 },
                         scale: { x: 1, y: 0, z: 1 } 
                     }
-                },
-                attachment: {
-                    userId: mreUser.id,
-                    attachPoint: 'hips'
                 }
-    
-                }
+            }
         }).value
 
         await actor.createAnimation('rise', {

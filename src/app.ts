@@ -43,7 +43,7 @@ export default class App {
             events: []
         })
         
-        //actor.enableAnimation("rise")
+        actor.enableAnimation("rise")
 
 
 

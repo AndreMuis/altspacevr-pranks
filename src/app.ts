@@ -68,12 +68,12 @@ export default class App {
 
     private riseAnimationKeyFrames: MRESDK.AnimationKeyframe[] = [{
         time: 0,
-        value: { transform: { local: { position: new Vector3(0, -1.3, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, -1.1, 0) } } }
     },{
         time: 3,
-        value: { transform: { local: { position: new Vector3(0, -1.3, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, -1.1, 0) } } }
     }, {
-        time: 3.5,
+        time: 4,
         value: { transform: { local: { position: new Vector3(0, 10, 0) } } }
     }]
 }

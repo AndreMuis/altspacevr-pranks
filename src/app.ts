@@ -25,7 +25,7 @@ export default class App {
             actor: {
                 transform: {
                     local: {
-                        position: { x: 0, y: -1.1, z: 0 },
+                        position: { x: 0, y: -1.5, z: 0 },
                         scale: { x: 3, y: 0, z: 3 } 
                     }
                 },
@@ -68,10 +68,10 @@ export default class App {
 
     private riseAnimationKeyFrames: MRESDK.AnimationKeyframe[] = [{
         time: 0,
-        value: { transform: { local: { position: new Vector3(0, -1.1, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, -1.5, 0) } } }
     },{
         time: 3,
-        value: { transform: { local: { position: new Vector3(0, -1.1, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, -1.5, 0) } } }
     }, {
         time: 8,
         value: { transform: { local: { position: new Vector3(0, 10, 0) } } }

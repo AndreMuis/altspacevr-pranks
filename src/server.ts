@@ -1,4 +1,5 @@
 import { WebHost, log } from '@microsoft/mixed-reality-extension-sdk'
+require('@microsoft/mixed-reality-extension-sdk/built/protocols/protocol').DefaultConnectionTimeoutSeconds = 0
 
 import { resolve as resolvePath } from 'path'
 

@@ -25,7 +25,7 @@ export default class App {
             actor: {
                 transform: {
                     local: {
-                        position: { x: 0, y: -1, z: 0 },
+                        position: { x: 0, y: -1.1, z: 0 },
                         scale: { x: 1, y: 0, z: 1 } 
                     }
                 },

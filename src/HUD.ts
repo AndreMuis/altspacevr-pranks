@@ -38,7 +38,7 @@ export class HUD {
             actor: {
                 transform: { 
                     local: {
-                        position: { x: 0, y: 0, z: 2 },
+                        position: { x: 0, y: -1, z: 2 },
                         rotation: MRESDK.Quaternion.RotationAxis(MRESDK.Vector3.Right(), -60 * MRESDK.DegreesToRadians)
                     }
                 },
@@ -47,8 +47,7 @@ export class HUD {
                     attachPoint: 'hips'
                 },
                 exclusiveToUser: user.id
-            },
-            addCollider: true
+            }
         })
     }
 

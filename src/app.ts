@@ -14,6 +14,17 @@ export default class App {
     }
 
     private started() {
+        MRESDK.Actor.CreateFromLibrary(this.context, {
+            resourceId: "artifact: 989569229617365197",
+            actor: {
+                transform: {
+                    local: {
+                        position: { x: 0, y: -1, z: 0 },
+                        scale: { x: 10, y: 10, z: 10 } 
+                    }
+                }
+            }
+        })
     }
 
     private userJoined = async (mreUser: MRESDK.User) => {

@@ -7,7 +7,7 @@ import App from './app'
 process.on('uncaughtException', err => console.log('uncaughtException', err))
 process.on('unhandledRejection', reason => console.log('unhandledRejection', reason))
 
-log.enable('app');
+log.enable('app')
 
 // Start listening for connections, and serve static files
 const server = new WebHost({

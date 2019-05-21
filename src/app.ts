@@ -2,6 +2,7 @@ import * as MRESDK from '@microsoft/mixed-reality-extension-sdk'
 
 import { User } from './common'
 import { HUD } from './HUD'
+import { Vector3 } from '@microsoft/mixed-reality-extension-sdk';
 
 export default class App {
     private users: Array<User> = []
@@ -13,21 +14,39 @@ export default class App {
         this.context.onUserLeft((user) => this.userLeft(user))        
     }
 
-    private started() {
-        MRESDK.Actor.CreateFromLibrary(this.context, {
-            resourceId: "artifact: 989569229617365197",
-            actor: {
-                transform: {
-                    local: {
-                        position: { x: 0, y: -1, z: 0 },
-                        scale: { x: 10, y: 10, z: 10 } 
-                    }
-                }
-            }
-        })
+    private async started() {
     }
 
     private userJoined = async (mreUser: MRESDK.User) => {
+
+
+        let actor = MRESDK.Actor.CreateFromLibrary(this.context, {
+            resourceId: "artifact: 989569425642356944",
+            actor: {
+                transform: {
+                    local: {
+                        position: { x: 0, y: 0, z: 0 },
+                        scale: { x: 3, y: 0, z: 3 } 
+                    }
+                },
+                attachment: {
+                    userId: mreUser.id,
+                    attachPoint: 'hips'
+                }
+    
+                }
+        }).value
+
+        await actor.createAnimation('rise', {
+            wrapMode: MRESDK.AnimationWrapMode.Loop,
+            keyframes: this.riseAnimationKeyFrames,
+            events: []
+        })
+        
+        //actor.enableAnimation("rise")
+
+
+
         let user = new User(mreUser.id, mreUser.name)
         this.users.push(user)
 
@@ -46,4 +65,15 @@ export default class App {
             await user.hud.update(this.users)
         }
     }
+
+    private riseAnimationKeyFrames: MRESDK.AnimationKeyframe[] = [{
+        time: 0,
+        value: { transform: { local: { position: new Vector3(0, -1.3, 0) } } }
+    },{
+        time: 3,
+        value: { transform: { local: { position: new Vector3(0, -1.3, 0) } } }
+    }, {
+        time: 3.5,
+        value: { transform: { local: { position: new Vector3(0, 10, 0) } } }
+    }]
 }

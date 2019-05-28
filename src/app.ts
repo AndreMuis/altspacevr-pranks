@@ -16,25 +16,33 @@ export default class App {
     }
 
     private async started() {
+        MRESDK.Actor.CreatePrimitive(this.context, {
+            definition: {
+                shape: MRESDK.PrimitiveShape.Sphere,
+                radius: 0.1
+            },
+            actor: {
+                transform: {
+                    local: {
+                        position: { x: 0, y: 0, z: 0 }
+                    }
+                }
+            }
+        })
     }
 
     private userJoined = async (mreUser: MRESDK.User) => {
 
-        /*
+        
         let actor = MRESDK.Actor.CreateFromLibrary(this.context, {
-            resourceId: "artifact: 989569425642356944",
+            resourceId: "artifact: 1217039660681790297",
             actor: {
                 transform: {
                     local: {
-                        position: { x: 0, y: -1.5, z: 0 },
-                        scale: { x: 3, y: 0, z: 3 } 
+                        position: { x: 0, y: 0, z: 0 },
+                        scale: { x: 2, y: 3, z: 2 }
                     }
-                },
-                attachment: {
-                    userId: mreUser.id,
-                    attachPoint: 'hips'
                 }
-    
             }
         }).value
 
@@ -44,11 +52,8 @@ export default class App {
             events: []
         })
         
-        console.log(actor.transform.app)
-        console.log(actor.transform.local)
-
         actor.enableAnimation("rise")
-        */
+        
 
 
         let user = new User(mreUser.id, mreUser.name)
@@ -72,12 +77,12 @@ export default class App {
 
     private riseAnimationKeyFrames: MRESDK.AnimationKeyframe[] = [{
         time: 0,
-        value: { transform: { local: { position: new Vector3(0, -1.5, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, 0, 0) } } }
     },{
         time: 3,
-        value: { transform: { local: { position: new Vector3(0, -1.5, 0) } } }
+        value: { transform: { local: { position: new Vector3(0, 0, 0) } } }
     }, {
-        time: 8,
-        value: { transform: { local: { position: new Vector3(0, 10, 0) } } }
+        time: 6,
+        value: { transform: { local: { position: new Vector3(0, 5, 0) } } }
     }]
 }

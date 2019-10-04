@@ -1,5 +1,4 @@
 import * as MRESDK from '@microsoft/mixed-reality-extension-sdk'
-require('@microsoft/mixed-reality-extension-sdk/built/protocols/protocol').DefaultConnectionTimeoutSeconds = 0
 
 import { User } from './common'
 
@@ -16,7 +15,8 @@ export class Fart {
     }
 
     private async setupAssets() {
-        this.fartSoundAsset = await this.context.assetManager.createSound(
+        const assetContainer = new MRESDK.AssetContainer(this.context)
+        this.fartSoundAsset = await assetContainer.createSound(
             'fartSound',
             { uri: `${this.baseUrl}/fart.wav` }
         )
@@ -25,13 +25,17 @@ export class Fart {
     public async playSound(user: User) {
         user.isFarting = true
 
-        user.fartSoundActor = await MRESDK.Actor.CreatePrimitive(this.context, {
-            definition: {
-                shape: MRESDK.PrimitiveShape.Sphere
-            },
+        const assetContainer = new MRESDK.AssetContainer(this.context)
+        user.fartSoundActor = MRESDK.Actor.Create(this.context, {
             actor: {
                 appearance: { 
-                    enabled: false 
+                    meshId: assetContainer.createSphereMesh('sphere', 1, 15, 15).id,
+                    enabled: false
+                },
+                transform: {
+                    local: {
+                        position: new MRESDK.Vector3(0.0, 0.0, 0.0)
+                    }
                 },
                 attachment: {
                     userId: user.id,
@@ -46,8 +50,7 @@ export class Fart {
             doppler: 0.0,
             spread: 0.0,
             rolloffStartDistance: 2.0
-        },
-        0.0)
+        })
 
         user.fartCloudActor = await MRESDK.Actor.CreateFromLibrary(this.context, {
             resourceId: Fart.fartCloudResourceId,

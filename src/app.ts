@@ -1,5 +1,4 @@
 import * as MRESDK from '@microsoft/mixed-reality-extension-sdk'
-require('@microsoft/mixed-reality-extension-sdk/built/protocols/protocol').DefaultConnectionTimeoutSeconds = 0
 
 import { User } from './common'
 import { HUD } from './HUD'
@@ -16,15 +15,15 @@ export default class App {
     }
 
     private async started() {
-        MRESDK.Actor.CreatePrimitive(this.context, {
-            definition: {
-                shape: MRESDK.PrimitiveShape.Sphere,
-                radius: 0.1
-            },
+        const assetContainer = new MRESDK.AssetContainer(this.context)
+        const sphereActor = MRESDK.Actor.Create(this.context, {
             actor: {
+                appearance: { 
+                    meshId: assetContainer.createSphereMesh('sphere', 0.1, 15, 15).id  
+                },
                 transform: {
                     local: {
-                        position: { x: 0, y: 0, z: 0 }
+                        position: new MRESDK.Vector3(0.0, 0.0, 0.0)
                     }
                 }
             }
@@ -44,7 +43,7 @@ export default class App {
                     }
                 }
             }
-        }).value
+        })
 
         await actor.createAnimation('rise', {
             wrapMode: MRESDK.AnimationWrapMode.Loop,

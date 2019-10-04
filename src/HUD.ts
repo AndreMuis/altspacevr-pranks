@@ -1,5 +1,4 @@
 import * as MRESDK from '@microsoft/mixed-reality-extension-sdk'
-require('@microsoft/mixed-reality-extension-sdk/built/protocols/protocol').DefaultConnectionTimeoutSeconds = 0
 
 import { User } from './common'
 import { Fart } from './fart'
@@ -31,15 +30,16 @@ export class HUD {
     public async attachTo(user: User) {
         user.hud = this
 
-        this.planeActor = await MRESDK.Actor.CreatePrimitive(this.context, {
-            definition: {
-                shape: MRESDK.PrimitiveShape.Plane,
-                dimensions: { x: HUD.width, y: 0, z: HUD.height }
-            },
+        const assetContainer = new MRESDK.AssetContainer(this.context)
+        this.planeActor = MRESDK.Actor.Create(this.context, {
             actor: {
+                appearance: { 
+                    meshId: assetContainer.createPlaneMesh('plane', HUD.width, HUD.height, 1, 1).id
+                },
+                collider: { geometry: { shape: 'auto' } },
                 transform: { 
                     local: {
-                        position: { x: 0, y: 0  , z: 2 },
+                        position: { x: 0, y: 0, z: 2 },
                         rotation: MRESDK.Quaternion.RotationAxis(MRESDK.Vector3.Right(), -60 * MRESDK.DegreesToRadians)
                     }
                 },
@@ -71,7 +71,7 @@ export class HUD {
             fartTextActor.setCollider("box", false)
             
             const fartTextButtonBehavior = fartTextActor.setBehavior(MRESDK.ButtonBehavior)
-            fartTextButtonBehavior.onClick('pressed', async (mreUser: MRESDK.User) => {
+            fartTextButtonBehavior.onButton('pressed', async (mreUser: MRESDK.User) => {
                 if (user.isFarting == false) {
                     await this.fart.playSound(user)
                 }
@@ -81,7 +81,7 @@ export class HUD {
             blackoutTextActor.setCollider("box", false)
             
             const blackoutTextButtonBehavior = blackoutTextActor.setBehavior(MRESDK.ButtonBehavior)
-            blackoutTextButtonBehavior.onClick('pressed', async (mreUser: MRESDK.User) => {
+            blackoutTextButtonBehavior.onButton('pressed', async (mreUser: MRESDK.User) => {
                 if (user.isBlackedOut == false) {
                     await this.blackout.drawPlane(user)
                 }

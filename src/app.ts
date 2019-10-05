@@ -16,7 +16,7 @@ export default class App {
 
     private async started() {
         const assetContainer = new MRESDK.AssetContainer(this.context)
-        const sphereActor = MRESDK.Actor.Create(this.context, {
+        MRESDK.Actor.Create(this.context, {
             actor: {
                 appearance: { 
                     meshId: assetContainer.createSphereMesh('sphere', 0.1, 15, 15).id  

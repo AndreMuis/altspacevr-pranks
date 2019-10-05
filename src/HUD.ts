@@ -36,7 +36,6 @@ export class HUD {
                 appearance: { 
                     meshId: assetContainer.createPlaneMesh('plane', HUD.width, HUD.height, 1, 1).id
                 },
-                collider: { geometry: { shape: 'auto' } },
                 transform: { 
                     local: {
                         position: { x: 0, y: 0, z: 2 },

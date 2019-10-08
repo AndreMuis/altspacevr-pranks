@@ -27,7 +27,7 @@ export class Launch {
             resourceId: Launch.planeResourceId,
             actor: {
                 appearance: {
-                    enabled: false
+                    enabled: true
                 },
                 transform: {
                     local : {

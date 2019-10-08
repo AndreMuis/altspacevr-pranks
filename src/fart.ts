@@ -44,7 +44,7 @@ export class Fart {
             }
         })
 
-        await user.fartSoundActor.startSound(this.fartSoundAsset.id, {
+        user.fartSoundActor.startSound(this.fartSoundAsset.id, {
             volume: 1.0,
             looping: false,
             doppler: 0.0,
@@ -52,7 +52,7 @@ export class Fart {
             rolloffStartDistance: 2.0
         })
 
-        user.fartCloudActor = await MRESDK.Actor.CreateFromLibrary(this.context, {
+        user.fartCloudActor = MRESDK.Actor.CreateFromLibrary(this.context, {
             resourceId: Fart.fartCloudResourceId,
             actor: {
                 transform: {

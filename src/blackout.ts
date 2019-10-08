@@ -5,7 +5,7 @@ import { User } from './common'
 export class Blackout {
     static readonly outwardFacingCubeResourceId = "artifact: 1210966302131225037"
     static readonly inwardFacingCubeResourceId = "artifact: 1210966307894198735"
-    static readonly durationInMilliseconds = 5000 
+    static readonly durationInMilliseconds = 1000 
 
     private interval: NodeJS.Timeout
 

@@ -13,7 +13,11 @@ export class User {
     public blackoutOutwardFacingCubeActor: MRESDK.Actor
     public blackoutInwardFacingCubeActor: MRESDK.Actor
 
-    constructor(public id: string, public name: string) {
+    public isLaunched: boolean
+    public launchLocationActor: MRESDK.Actor
+    public launchPlaneActor: MRESDK.Actor
+
+    constructor(context: MRESDK.Context, public id: string, public name: string) {
         this.hud = null
 
         this.isFarting = false
@@ -23,5 +27,19 @@ export class User {
         this.isBlackedOut = false
         this.blackoutOutwardFacingCubeActor = null
         this.blackoutInwardFacingCubeActor = null
+
+        this.isLaunched = false
+        
+        this.launchLocationActor = MRESDK.Actor.Create(context, {
+            actor: {
+                attachment: {
+                    userId: id,
+                    attachPoint: 'hips'
+                }
+            }
+        })
+        this.launchLocationActor.subscribe('transform')
+
+        this.launchPlaneActor = null
     }
 }   

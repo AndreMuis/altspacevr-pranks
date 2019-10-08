@@ -4,7 +4,7 @@ import { User } from './common'
 
 export class Launch {
     static readonly planeResourceId = "artifact: 989569425642356944"
-    static readonly planeScale = new MRESDK.Vector3 (3, 0, 3)
+    static readonly planeScale = new MRESDK.Vector3 (2, 0, 2)
 
     static readonly riseDurationInSeconds = 2.0
     static readonly totalDurationInSeconds = 5.0

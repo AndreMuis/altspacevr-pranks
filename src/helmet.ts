@@ -20,8 +20,8 @@ export class Helmet {
             actor: {
                 transform: {
                     local: {
-                        position: { x: 0.0, y: 0.0, z: 0.0 },
-                        rotation: MRESDK.Quaternion.RotationAxis(MRESDK.Vector3.Right(), 0 * MRESDK.DegreesToRadians),
+                        position: { x: 0.0, y: -0.5, z: 0.0 },
+                        rotation: MRESDK.Quaternion.RotationAxis(MRESDK.Vector3.Right(), 180 * MRESDK.DegreesToRadians),
                         scale: { x: 1, y: 1, z: 1 }
                     }
                 },

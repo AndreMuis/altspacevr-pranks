@@ -85,15 +85,15 @@ export class HUD {
             actor.destroy()
         }
 
-        await this.addTextToHUD(this.planeActor, HUD.margin, HUD.margin, "User", HUD.grayColor, true)
-        await this.addTextToHUD(this.planeActor, HUD.margin + 0.4, HUD.margin, "Actions", HUD.grayColor, true)
+        this.addTextToHUD(this.planeActor, HUD.margin, HUD.margin, "User", HUD.grayColor, true)
+        this.addTextToHUD(this.planeActor, HUD.margin + 0.4, HUD.margin, "Actions", HUD.grayColor, true)
 
         for (let index = 0; index < users.length; index = index + 1) {
             let user = users[index]
 
             let y = HUD.margin + (index + 1) * (HUD.textHeight + HUD.padding)
 
-            await this.addTextToHUD(this.planeActor, HUD.margin, y, Utility.truncate(user.name, 13), HUD.greenColor, false)
+            this.addTextToHUD(this.planeActor, HUD.margin, y, Utility.truncate(user.name, 13), HUD.greenColor, false)
 
             let fartBoxActor = await this.addButtonToHUD(this.planeActor, HUD.margin + 0.4, y, 0.15, "fart")
             

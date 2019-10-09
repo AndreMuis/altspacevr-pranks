@@ -5,13 +5,14 @@ import { Fart } from './fart'
 import { Blackout } from './blackout'
 import { Utility } from './utility'
 import { Launch } from './launch'
+import { Helmet } from './helmet'
 
 export class HUD {
     static readonly grayColor = new MRESDK.Color3(50.0 / 255.0, 50.0 / 255.0, 50.0 / 255.0)
     static readonly greenColor = new MRESDK.Color3(0.0 / 255.0, 100.0 / 255.0, 0.0 / 255.0)
     static readonly blueColor = new MRESDK.Color3(0.0 / 255.0, 100.0 / 255.0, 255.0 / 255.0)
 
-    static readonly width = 1.2
+    static readonly width = 1.5
     static readonly height = 1.0
     static readonly margin = 0.03
     static readonly padding = 0.03
@@ -30,11 +31,13 @@ export class HUD {
     private fart: Fart
     private blackout: Blackout
     private launch: Launch
+    private helmet: Helmet
 
     constructor(private context: MRESDK.Context, private baseUrl: string) {
         this.fart = new Fart(context, baseUrl)
         this.blackout = new Blackout(context)
         this.launch = new Launch(context)
+        this.helmet = new Helmet(context)
 
         this.setupAssets()
     }
@@ -116,6 +119,15 @@ export class HUD {
             launchBoxButtonBehavior.onButton('pressed', async (mreUser: MRESDK.User) => {
                 if (user.isLaunched == false) {
                     await this.launch.start(user)
+                }
+            })
+
+            let helmetBoxActor = await this.addButtonToHUD(this.planeActor, HUD.margin + 1.15, y, 0.25, "pumpkin")
+            
+            const helmetBoxButtonBehavior = helmetBoxActor.setBehavior(MRESDK.ButtonBehavior)
+            helmetBoxButtonBehavior.onButton('pressed', async (mreUser: MRESDK.User) => {
+                if (user.isHelmetAttached == false) {
+                    await this.helmet.attach(user)
                 }
             })
         }

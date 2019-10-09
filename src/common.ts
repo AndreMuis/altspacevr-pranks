@@ -17,6 +17,9 @@ export class User {
     public launchLocationActor: MRESDK.Actor
     public launchPlaneActor: MRESDK.Actor
 
+    public isHelmetAttached: boolean
+    public helmetActor: MRESDK.Actor
+
     constructor(context: MRESDK.Context, public id: string, public name: string) {
         this.hud = null
 
@@ -41,5 +44,8 @@ export class User {
         this.launchLocationActor.subscribe('transform')
 
         this.launchPlaneActor = null
+
+        this.isHelmetAttached = false
+        this.helmetActor = null
     }
 }   
